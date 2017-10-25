@@ -144,7 +144,7 @@ sd_startShiny <- function(self, private, path, seed) {
 
   "!DEBUG finding shiny port"
   ## Try to read out the port, keep trying for 10 seconds
-  for (i in 1:50) {
+  for (i in 1:5000) {
     err_lines <- readLines(p$get_error_file())
 
     if (!p$is_alive()) {
@@ -154,7 +154,7 @@ sd_startShiny <- function(self, private, path, seed) {
 
     Sys.sleep(0.2)
   }
-  if (i == 50) {
+  if (i == 5000) {
     stop("Cannot find shiny port number. Error:\n", paste(err_lines, collapse = "\n"))
   }
 
